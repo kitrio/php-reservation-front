@@ -17,7 +17,7 @@
               <router-link to="/about">빛공해와 밤하늘</router-link>
             </li>
             <li>
-              <router-link to="/about">오시는 길</router-link>
+              <router-link to="/map">오시는 길</router-link>
             </li>
           </ul>
         </li>
