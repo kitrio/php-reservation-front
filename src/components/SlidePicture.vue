@@ -1,16 +1,22 @@
 <template>
   <carousel :autoplay="true" :nav="false" :items=1>
-    <img src='../assets/slide/youngyang1.jpg'>
-    <img src='../assets/slide/youngyang2.jpg'>
-    <img src='../assets/slide/youngyang3.jpg'>
-    <img src='../assets/slide/youngyang4.jpg'>
+    <img v-for="img in imagesprops"
+    :key='img'
+    :src="`${img}`" />
   </carousel>
 </template>
 
 <script>
 import carousel from 'vue-owl-carousel'
 export default {
-  components: { carousel }
+  name: 'SlidePicture',
+  components: { carousel },
+  props: {
+    imagesprops: {
+      type: Array,
+      default: () => []
+    }
+  }
 }
 </script>
 
