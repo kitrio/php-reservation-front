@@ -39,7 +39,7 @@
           </ul>
         </li>
         <li class='submenu'>
-          로그인
+          <router-link to="/user/signup">회원가입</router-link>
         </li>
       </ul>
     </nav>
@@ -47,7 +47,7 @@
     <router-view class='article'/>
     <footer>
       <div class="footer">
-        <p> © 2020 (36518) 경상북도 영양군 수비면 반딧불이로 50</p>
+        <p> © 2020</p>
       </div>
     </footer>
   </div>

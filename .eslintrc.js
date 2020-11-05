@@ -14,6 +14,10 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
   },
+  globals: {
+    'VUE_APP_BASE_URL': false,
+    'axios': false
+  },
   overrides: [
     {
       files: [
