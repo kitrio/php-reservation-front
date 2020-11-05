@@ -44,7 +44,7 @@
       </ul>
     </nav>
     </header>
-    <article></article>
+    <router-view class='article'/>
     <footer>
       <div class="footer">
         <p> © 2020 (36518) 경상북도 영양군 수비면 반딧불이로 50</p>
