@@ -1,5 +1,6 @@
 <template>
   <div id="home">
+    <PopupAlert :value='popupSubject'/>
     <SlidePicture v-if="slideImage" :imagesprops='slideImage'/>
     <h2 class="title">대한민국에서 가장 아름다운 밤하늘</h2>
     <section>
@@ -15,13 +16,16 @@
 
 <script>
 import SlidePicture from '@/components/SlidePicture'
+import PopupAlert from '@/components/PopupAlert'
 export default {
   name: 'Home',
   components: {
     SlidePicture,
+    PopupAlert
   },
   data () {
     return {
+      popupSubject: '이 사이트는 실제 공원의 홈페이지가 아니며 모방한 사이트 임을 알려드립니다.',
       slideImage: [
         require('../assets/slide/youngyang1.jpg'),
         require('../assets/slide/youngyang2.jpg'),
