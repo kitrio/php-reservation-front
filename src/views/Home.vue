@@ -1,5 +1,5 @@
 <template>
-  <div id="Home">
+  <div id="home">
     <SlidePicture v-if="slideImage" :imagesprops='slideImage'/>
     <h2 class="title">대한민국에서 가장 아름다운 밤하늘</h2>
     <section>
@@ -34,13 +34,5 @@ export default {
 </script>
 
 <style lang="css" scoped>
-  .title {
-    margin: 1em;
-  }
-  .content {
-    padding: 2em;
-  }
-  section {
-    padding: 1em;
-  }
+
 </style>
