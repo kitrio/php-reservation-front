@@ -1,6 +1,5 @@
 <template>
   <v-app id="signup">
-    <h3 class="title">회원가입</h3>
     <section>
       <v-text-field
         v-model="idField"
@@ -28,7 +27,7 @@
       <v-text-field
         v-model="phoneNumberField"
         class="textField"
-        label="휴대폰"
+        label="휴대폰 번호"
         :rules="[rules.phoneNumberRules,rules.tel]"
         required
       />
@@ -61,46 +60,38 @@ export default {
         min: (v) => v.length >= 8 || "최소 8자 이상 입력하세요",
         tel: (v) => v.length <= 11 || "전화번호는 11자리입니다",
         phoneNumberRules: (v) => {
-          if(isNaN(parseInt(v)))
+          if(isNaN(parseInt(v))){
             return "숫자만 입력해주세요"
-          
+          } else {
+            return true
           }
+        }
       }
     };
   },
-  mounted: {
-    function() {
-      axios({
-        method: "post",
-        url: VUE_APP_BASE_URL + "/member/sigunup",
-      });
-    },
-  },
   methods: {
     onSubmitSignUp() {
-      axios({
-        method: "post",
-        url: "/member/signup",
-        data: {
-          userid: this.idField,
-          password: this.passwordField,
+      axios.post("/api/member/signup",{
+          memberid: this.idField,
+          passwd: this.passwordField,
           name: this.nameField,
           phoneNumber: this.phoneNumberField
-        },
-      })
-        .then((res) => {
+        })
+        .then(res => {
+          console.log(res);
           if (res.status === 200) {
             alert("회원가입 되었습니다.");
             this.$router.push("/");
+            
           }
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error);
           if (error.response.status === 409) {
             alert("아이디가 중복되었습니다.");
           }
         });
-    }
+    },
   }
 };
 </script>
