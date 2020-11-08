@@ -14,9 +14,6 @@
               <router-link to="/">밤하늘 보호 공원</router-link>
             </li>
             <li>
-              <router-link to="/about">빛공해와 밤하늘</router-link>
-            </li>
-            <li>
               <router-link to="/map">오시는 길</router-link>
             </li>
           </ul>
@@ -39,7 +36,7 @@
           </ul>
         </li>
         <li class='submenu'>
-          <router-link to="/user/signup">회원가입</router-link>
+          <router-link to="/member/signup">회원가입</router-link>
         </li>
       </ul>
     </nav>
