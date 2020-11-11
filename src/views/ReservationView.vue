@@ -2,7 +2,7 @@
     <div id="reservationView">
         <section>
             <h3 class="title">예약하기</h3>
-            <div>
+            <div class="room">
                 <SlidePicture
                     v-if="slideImage"
                     :imagesprops="slideImage"
@@ -11,50 +11,53 @@
             <div class="reservation">
                 <div>
                     <div class="label">인원</div>
-                    <v-text-field v-model="people" />
+                    <v-text-field 
+                        v-model="people"
+                        required
+                        :rules="[rules.required]"
+                    />
                     <div class="label">예약날짜</div>
                     <flat-pickr
                         v-model="date"
                         :config="config"
-                        placeholder="예약날짜를 선택해주세요"
+                        placeholder="예약일을 선택해주세요"
                         class="calendar"
+                        @change="setDate"
                     />
                     <input
                         type="button"
                         @click="searchRoom"
                         value="검색"
-                        class="searchRoom"
+                        class="searchButton"
                     />
                     <br />
-                    <div class="result" ref="result">
-                        <p>요금</p>
-                        <div class="label">{{ this.price }}</div>
-                        <!-- <input type="button" @click="selectResult" value="선택"> -->
-                    </div>
                 </div>
             </div>
-            <table v-if="search">
+            <!-- form -->
+
+            <table v-if="isSearch"
+            class="reservation">
                 <thead>
                     <tr>
                         <th><!--사진--></th>
                         <th>호실</th>
                         <th>크기</th>
-                        <th>기준인원/최대인원</th>
-                        <th>요금</th>
+                        <th>최소/최대인원</th>
+                        <th>1박 요금</th>
+                        <th>총 요금</th>
                     </tr>
 
-                    <tr v-for="room in roomInfo" :key="room">
+                    <tr v-for="(room,idx) in roomInfo"
+                        :key="idx">
                         <th></th>
-                        <th>{{room.roonumber}}</th>
-                        <th>{{ room.size }}</th>
-                        <th>{{ room.minPeople}}/{{ room.maxPeople }}</th>
+                        <th>{{ room.room_number}}</th>
+                        <th>{{ room.size }}평형</th>
+                        <th>{{ room.min_people}}  /  {{ room.max_people }}</th>
+                        <th>{{ room.price }}</th>
                         <th>{{ room.price }}</th>
                     </tr>
                 </thead>
             </table>
-            <div class="reservation" v-show="isRoomEmpty">
-            <!-- todo -->
-            </div>
         </section>
     </div>
 </template>
@@ -71,16 +74,15 @@ export default {
     },
     data() {
         return {
-            people: 0,
+            people: "",
             checkIn: "",
             checkOut: "",
-            price: "",
             isRoomEmpty: false,
             isSearch: false,
             roomImage: [require("../assets/slide/room/1f-room.jpg")],
             slideImage: [],
-            room: "",
-            config: {
+            roominfo: null,
+            config: { //calendar
                 wrap: false, // set wrap to true only when using 'input-group'
                 altFormat: "Y - M - d",
                 dateFormat: "Y-m-d",
@@ -88,46 +90,67 @@ export default {
                 locale: Korean,
             },
             date: null,
+            idx: 0,
+            rules: {
+                required: value => !!value || '인원을 입력해주세요',
+            }
         }
     },
     methods: {
-        searchRoom() {
-            console.log(this.date.split('~'))
-            axios.post("/api/reservation/check", {
-                people: this.people,
-                checkIn: this.date.split('~')[0],
-                checkOut: this.date.split('~')[1],
-            })
-            .then(res => {
-                this.price = res.data.price;
-                this.isRoomEmpty = res.data.isEmpty;
-            });
+        validation() {
+            if (this.people === "") {
+                alert("인원을 입력해주세요")
+                
+                return false
+            } else if (this.date === null || this.checkOut === undefined)
+                alert("숙박기간을 선택해주세요")
+            else {
+                return true
+            }
         },
+        searchRoom() {
+            this.setDate()
+            if (this.validation() === true) {
+                axios.post("/api/reservation/check", {
+                    people: this.people,
+                    checkIn: this.checkIn,
+                    checkOut: this.checkOut,
+                })
+                .then(res => {
+                    this.roomInfo = res.data
+                    this.isSearch = true
+                    this.$forceUpdate()
+                })
+            }
+        },
+        setDate() {
+            this.checkIn = this.date.split('~')[0]
+            this.checkOut = this.date.split('~')[1]
+        }
     }
 };
 </script>
 
 <style scoped>
-section {
-    padding: 3em;
-}
-
-.reservation {
-    background-color: rgb(248, 248, 248);
-    width: 50em;
-    margin: 2em;
-}
-.label {
-    display: inline-block;
-    width: 5em;
-}
-.searchRoom {
-    padding: 8px;
-    background: rgb(100, 100, 100);
-    color: #fff;
-}
-.calendar {
-    width: 14em;
-    padding: 8px;
-}
+    section {
+        padding: 3em;
+    }
+    .reservation {
+        background-color: rgb(248, 248, 248);
+        width: 50em;
+        margin: 2em;
+    }
+    .label {
+        display: inline-block;
+        width: 5em;
+    }
+    .searchButton {
+        padding: 8px;
+        background: rgb(100, 100, 100);
+        color: #fff;
+    }
+    .calendar {
+        width: 14em;
+        padding: 8px;
+    }
 </style>
