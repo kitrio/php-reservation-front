@@ -1,26 +1,21 @@
 <template>
-  <div>
-    <section>
-    <h3>오시는길</h3>
-    <div class="content">
-        
+    <div>
+        <section>
+            <h3>오시는길</h3>
+            <div class="content">    
+            </div>
+            <div class="map"
+            ref="MapContainer"
+            />
+            <div class="content">
+                대전(약 3시간 30분소요)
+                대전IC - 경부고속도로 - 당진영덕 고속도로 - 상주IC - 동청송영양TG - 자연생태공원 관리사업소
+                <br>
+                부산 (약 3시간 30분)
+                경부고속도로 포항IC 울진 방면 - 당진영덕 고속도로 - 영양IC - 자연생태공원 관리사업소
+            </div>
+        </section>
     </div>
-    <div class="map"
-        ref="MapContainer"
-    />
-    <div class="content">
-        대전(약 3시간 30분소요)
-
-        대전IC - 경부고속도로 - 당진영덕 고속도로 - 상주IC - 동청송영양TG - 자연생태공원 관리사업소
-
-
-        부산 (약 3시간 30분)
-
-        경부고속도로 포항IC 울진 방면 - 당진영덕 고속도로 - 영양IC - 자연생태공원 관리사업소
-        
-    </div>
-    </section>
-  </div>
 </template>
 
 <script>

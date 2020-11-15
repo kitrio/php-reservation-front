@@ -1,5 +1,5 @@
 <template>
-  <v-app id="Login">
+  <v-app id="login">
     <section>
       <v-text-field
         v-model="memberid"
