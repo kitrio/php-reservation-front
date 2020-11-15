@@ -20,21 +20,21 @@
                     type="button"
                     @click="searchRoom"
                     value="검색"
-                    class="searchButton"
+                    class="search-button"
                 />
                 <br />
 
             </div>
 
             <div v-if="isSearch">
-                <div class="roomList"
+                <div class="roomlist"
                     v-for="(room,idx) in roomInfo"
                     :key="idx">
-                    <carousel :autoplay="true" :nav="false" :items=1 class="imgcarousel">
+                    <carousel :autoplay="true" :nav="false" :items=1 class="img-carousel">
                         <img v-for="(image,index) in room.image"
                             :key="index"
                             :src=imagepath+image.file_name
-                            class="roomImg"
+                            class="roomimg"
                             >
                     </carousel>
                     <div class="roominfo">
@@ -153,7 +153,7 @@ section {
     margin: 2em;
 }
 
-.roomList {
+.roomlist {
     display: flex;
     flex-direction: row;
     background-color: rgb(248, 248, 248);
@@ -161,17 +161,17 @@ section {
 }
 
 @media (max-width: 800px) {
-    .roomList {
+    .roomlist {
         display: flex;
         flex-direction: column;
     }
 }
 
-.imgcarousel {
+.img-carousel {
     max-width: 300px;
     min-width: 200px;
 }
-.roomImg {
+.roomimg {
     /* position: relative; */
     height: 200px;
     width: 100%;
@@ -193,7 +193,7 @@ li {
     padding: 1em;
 }
 
-.searchButton {
+.search-button {
     padding: 8px;
     background: rgb(100, 100, 100);
     color: #fff;

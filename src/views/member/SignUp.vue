@@ -3,14 +3,14 @@
     <section>
       <v-text-field
         v-model="idField"
-        class="textField"
+        class="text-field"
         autofocus
         label="아이디"
         required
       />
       <v-text-field
         v-model="passwordField"
-        class="textField"
+        class="text-field"
         :rules="[rules.passwd, rules.min]"
         :type="showpasswd ? 'text' : 'password'"
         label="비밀번호"
@@ -19,14 +19,14 @@
       />
       <v-text-field
         v-model="nameField"
-        class="textField"
+        class="text-field"
         label="성함"
         required
       />
 
       <v-text-field
         v-model="phoneNumberField"
-        class="textField"
+        class="text-field"
         label="휴대폰 번호"
         :rules="[rules.phoneNumberRules,rules.tel]"
         required
@@ -76,21 +76,20 @@ export default {
           passwd: this.passwordField,
           name: this.nameField,
           phoneNumber: this.phoneNumberField
-        })
-        .then(res => {
-          console.log(res);
-          if (res.status === 200) {
-            alert("회원가입 되었습니다.");
-            this.$router.push("/");
-            
-          }
-        })
-        .catch(error => {
-          console.log(error);
-          if (error.response.status === 409) {
-            alert("아이디가 중복되었습니다.");
-          }
-        });
+      })
+      .then(res => {
+        console.log(res);
+        if (res.status === 200) {
+          alert("회원가입 되었습니다.");
+          this.$router.push("/");
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        if (error.response.status === 409) {
+          alert("아이디가 중복되었습니다.");
+        }
+      });
     },
   }
 };
@@ -98,7 +97,7 @@ export default {
 
 <style scoped>
 
-.textField {
+.text-field {
   width: 80%;
   height: 5em;
   margin: 0 auto;

@@ -3,14 +3,14 @@
     <section>
       <v-text-field
         v-model="memberid"
-        class="textField"
+        class="text-field"
         label="ID"
         :rules="[rules.requiredID,rules.max]"
         counter
       />
       <v-text-field
         v-model="passwd"
-        class="textField"
+        class="text-field"
         :rules="[rules.required, rules.min]"
         :append-icon="showpasswd ? 'mdi-eye' : 'mdi-eye-off'"
         :type="showpasswd ? 'text' : 'password'"
@@ -19,7 +19,7 @@
         @click:append="showpasswd = !showpasswd"
       />
       <div
-        class="loginbutton"
+        class="login-button"
       >
         <v-btn
           @click="login"
@@ -72,12 +72,12 @@ export default {
 </script>
 
 <style scoped>
-  .textField {
+  .text-field {
     width: 80%;
     height: 5em;
     margin: 0 auto;
   }
-  .loginbutton {
+  .login-button {
     display: flex;
     justify-content: center;
   }

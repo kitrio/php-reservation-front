@@ -4,7 +4,7 @@
     class='popup'>
     <div>
       <input type=button 
-        class='popupClose'
+        class='popup-close'
         value='x'
         @click='closePopup'/>
       <div>공지사항</div>
@@ -51,7 +51,7 @@ export default {
     z-index: 1000;
   }
 
-  .popupClose {
+  .popup-close {
     margin-top: 10px;
     margin-right: 0px;
     margin-left: 90%;
