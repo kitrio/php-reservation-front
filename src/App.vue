@@ -32,7 +32,9 @@
             <li>
               <router-link to="/reservation">팬션예약</router-link>
             </li>
-            <li>문의사항</li>
+            <li>
+              <router-link to="/qna">문의사항</router-link>
+            </li>
           </ul>
         </li>
         <li class='submenu'>
