@@ -59,7 +59,12 @@
                         </div>
                     </div>
                     <div class="button-div">
-                        <button class="reservation-button">예약하기</button>
+                        <button 
+                            class="reservation-button"
+                            @click="reservation(idx)"
+                            >
+                            예약하기
+                        </button>
                     </div>
                 </div>
             </div>
@@ -68,9 +73,9 @@
 </template>
 
 <script>
-import "flatpickr/dist/flatpickr.css";
-import flatPickr from "vue-flatpickr-component";
-import { Korean } from "flatpickr/dist/l10n/ko";
+import "flatpickr/dist/flatpickr.css"
+import flatPickr from "vue-flatpickr-component"
+import { Korean } from "flatpickr/dist/l10n/ko"
 import carousel from 'vue-owl-carousel'
 export default {
     components: {
@@ -84,7 +89,7 @@ export default {
             checkOut: "",
             period: 0,
             isSearch: false,
-            roominfo: null,
+            roomInfo: null,
             config: { //calendar
                 wrap: false, // set wrap to true only when using 'input-group'
                 altFormat: "Y - M - d",
@@ -121,9 +126,17 @@ export default {
                     checkOut: this.checkOut,
                 })
                 .then(res => {
+                    if(res.status === 200){
                     this.roomInfo = res.data
                     this.$forceUpdate()
                     this.isSearch = true
+                    }
+                })
+                .catch((error) => {
+                    if (error.response.status === 404) {
+                        alert("로그인이 되어있지 않습니다.")
+                        this.$router.push("/")
+                    }
                 })
             }
         },
@@ -134,12 +147,34 @@ export default {
             console.log(this.checkIn)
         },
         dateDiff() {
-            const checkIn = Date.UTC(this.checkIn.getFullYear(), this.checkIn.getMonth(), this.checkIn.getDate());
-            const checkOut = Date.UTC(this.checkOut.getFullYear(), this.checkOut.getMonth(), this.checkOut.getDate());
+            const checkIn = Date.UTC(this.checkIn.getFullYear(), this.checkIn.getMonth(), this.checkIn.getDate())
+            const checkOut = Date.UTC(this.checkOut.getFullYear(), this.checkOut.getMonth(), this.checkOut.getDate())
+            
             return Math.floor((checkOut - checkIn) / (1000 * 60 * 60 * 24));
+        },
+        reservation(idx) {
+            let index = idx
+            console.log(index)
+            axios.post("/api/reservation/set", {
+
+                room_number: this.roomInfo[index].room_number,
+                checkin: this.checkIn,
+                checkout: this.checkOut
+            })
+            .then(res =>{
+                if(res.status === 200){
+                    alert('예약 되었습니다.')
+                }
+            })
+            .catch((error) => {
+                if (error.response.status === 405) {
+                    alert("로그인이 되어있지 않습니다.")
+                    this.$router.push("/")
+                }
+            })
         }
     }
-};
+}
 </script>
 
 <style scoped>
