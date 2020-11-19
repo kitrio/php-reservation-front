@@ -203,13 +203,14 @@ section {
 }
 
 .img-carousel {
-    max-width: 300px;
+    max-width: 250px;
     min-width: 200px;
 }
 .roomimg {
-    /* position: relative; */
+    position: relative;
     height: 200px;
     width: 100%;
+
 }
 
 .roominfo {
