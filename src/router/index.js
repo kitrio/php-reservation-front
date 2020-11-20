@@ -11,24 +11,24 @@ const routes = [
         component: Home
     },
     {
-        path: '/about',
-        name: 'About',
-        component: () => import('../views/About.vue')
-    },
-    {
         path: '/map',
         name: 'Map',
         component: () => import('../views/Map')
     },
     {
+        path: '/star',
+        name: 'Start',
+        component: () => import('../views/StarsView')
+    },
+    {
         path: '/qna',
-        name: 'Question',
-        component: () => import('../views/QuestionView.vue')
+        name: 'Qna',
+        component: () => import('../views/QnaView.vue')
     },
     {
         path: '/qna/content/:num',
-        name: 'Contents',
-        component: () => import('../views/Contents.vue')
+        name: 'Content',
+        component: () => import('../views/Content.vue')
     },
     {
         path: '/reservation',

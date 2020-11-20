@@ -17,7 +17,7 @@
                     <tr v-for="(content,index) in contents" :key="index">
                     <td class="idx">{{content.idx}}</td>
                     
-                        <router-link :to="{ name: 'Contents', params: { num: content.idx}}">
+                        <router-link :to="{ name: 'Content', params: { num: content.idx}}">
                         <td class="title">
                         <p>{{content.title}}</p>
                         </td>
@@ -44,6 +44,7 @@
 
 
 export default {
+    name: "QnaView",
     data() {
         return {
             contents: null,
@@ -60,7 +61,6 @@ export default {
                 })
                 .then(response =>{
                     this.contents = response.data
-                    console.log(response.data)
                 })
                 .catch(error =>{
                     if (error.response.status === 404) {
