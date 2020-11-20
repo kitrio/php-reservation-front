@@ -1,53 +1,73 @@
 <template>
-  <div id="app">
+    <div id="app">
     <header>
     <div class='banner'>
-      <h1>밤하늘 보호공원</h1>
+        <h1>밤하늘 보호공원</h1>
     </div>
     <nav>
-      <ul class='main-manu'>
+        <ul class='main-manu'>
         <li class='logo'>밤하늘 보호공원</li>
         <li class='submenu'>
-          공원소개
-          <ul>
+            공원소개
+            <ul>
             <li>
-              <router-link to="/">밤하늘 보호 공원</router-link>
+                <router-link to="/">밤하늘 보호 공원</router-link>
             </li>
             <li>
-              <router-link to="/map">오시는 길</router-link>
+                <router-link to="/map">오시는 길</router-link>
             </li>
-          </ul>
+            </ul>
         </li>
         <li class='submenu'>
-          계절별 별자리
-          <ul>
+            계절별 별자리
+            <ul>
             <li>
-              별자리 알아보기
+                <router-link to="/star">별자리 알아보기</router-link>
             </li>
-          </ul>
+            </ul>
         </li>
         <li class='submenu'>
-          공원 팬션 예약
-          <ul>
+            공원 팬션 예약
+            <ul>
             <li>
-              <router-link to="/reservation">팬션예약</router-link>
+                <router-link to="/reservation">팬션예약</router-link>
             </li>
             <li>
-              <router-link to="/qna">문의사항</router-link>
+                <router-link to="/qna">문의사항</router-link>
             </li>
-          </ul>
+            </ul>
         </li>
         <li class='submenu'>
-          <router-link to="/member/signup">회원가입</router-link>
+            회원가입/로그인
+            <ul>
+            <li><router-link to="/member/signup">회원가입</router-link></li>
+            <li><router-link to="/member/login">로그인</router-link></li>
+            <li @click="logout"><router-link to="#">로그아웃</router-link></li>
+            </ul>
         </li>
-      </ul>
+        </ul>
     </nav>
     </header>
     <router-view class='article'/>
     <footer>
-      <div class="footer">
+        <div class="footer">
         <p> © 2020</p>
-      </div>
+        </div>
     </footer>
-  </div>
+    </div>
 </template>
+
+<script>
+export default {
+  name: "App",
+    data() {
+        return {
+        }
+    },
+    methods: {
+        logout() {
+            this.$store.dispatch('member/logout', '')
+        }
+    }
+}
+</script>

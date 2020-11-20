@@ -13,7 +13,7 @@
                     </v-card-text>
 
                     <v-card-actions
-                        v-if="memberinfo.memberid === postOne.writer"
+                        v-if="memberinfo === postOne.writer"
                         class="card-action"
                     >
                         <v-btn @click="modifyContent">
