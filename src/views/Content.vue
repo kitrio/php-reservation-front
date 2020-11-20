@@ -13,7 +13,7 @@
                     </v-card-text>
 
                     <v-card-actions
-                        v-if="memberId === postOne.writer"
+                        v-if="memberinfo.memberid === postOne.writer"
                         class="card-action"
                     >
                         <v-btn @click="modifyContent">
@@ -41,7 +41,7 @@ export default {
     },
     computed: {
         ...mapGetters({
-            memberId: ["member/getMemberId"],
+            memberinfo: ["member/getMemberId"],
         }),
     },
     mounted() {
