@@ -6,7 +6,11 @@
     </div>
     <nav>
         <ul class='main-manu'>
-        <li class='logo'>밤하늘 보호공원</li>
+        <li class='logo'>
+            <router-link to="/">
+                밤하늘 보호공원
+            </router-link>
+        </li>
         <li class='submenu'>
             공원소개
             <ul>
