@@ -1,6 +1,12 @@
 <template>
   <div>  
-    <section><SlidePicture v-if="slideImage" :imagesprops='slideImage'/>
+    <section>
+        <div class="content">
+          <SlidePicture 
+            v-if="slideImage" 
+            :imagesprops='slideImage' 
+            class="slide"/>
+        </div>
         <h3>별자리 지도</h3>
         <div class="content">
             밤하늘 보호공원은 인공조명으로 부터 생태계와 문화유산을 지켜내는 것을 목적으로
@@ -31,6 +37,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+  .slide{
+    display: block;
+    position: relative;
+    padding: 6em;
+    padding-top: 0px;
+    padding-bottom: 1em;
+  }
 
 </style>
