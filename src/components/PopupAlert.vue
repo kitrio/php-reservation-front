@@ -13,7 +13,12 @@
           {{ value }}
         </p>
     </div>
-    <button class="closebar">오늘 하루 그만 보기</button>
+    <button 
+    class="closebar"
+    @click="closePopupToday"
+    >
+      오늘 하루 그만 보기
+    </button>
   </div>
 </template>
 
@@ -34,6 +39,15 @@ export default {
   methods: {
     closePopup () {
       this.$refs.popup.parentNode.removeChild(this.$refs.popup);
+    },
+    closePopupToday () {
+      this.setPopupCookie('popup','false',1)
+      this.closePopup()
+    },
+    setPopupCookie (name, value) {
+      let date = new Date()
+      date.setDate(date.getDate() + 1)
+      document.cookie = `${name} = ${value}; expires = ${date.toUTCString()};`
     }
   }
 }

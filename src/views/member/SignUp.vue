@@ -77,9 +77,8 @@ export default {
           name: this.nameField,
           phoneNumber: this.phoneNumberField
       })
-      .then(res => {
-        console.log(res);
-        if (res.status === 200) {
+      .then(response => {
+        if (response.status === 200) {
           alert("회원가입 되었습니다.");
           this.$router.push("/");
         }
