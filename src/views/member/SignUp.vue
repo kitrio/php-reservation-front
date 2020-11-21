@@ -84,7 +84,6 @@ export default {
         }
       })
       .catch(error => {
-        console.log(error);
         if (error.response.status === 409) {
           alert("아이디가 중복되었습니다.");
         }

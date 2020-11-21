@@ -144,7 +144,6 @@ export default {
             this.checkIn = new Date(this.date.split('~')[0])
             this.checkOut = new Date(this.date.split('~')[1])
             this.period =  this.dateDiff()
-            console.log(this.checkIn)
         },
         dateDiff() {
             const checkIn = Date.UTC(this.checkIn.getFullYear(), this.checkIn.getMonth(), this.checkIn.getDate())
@@ -154,7 +153,6 @@ export default {
         },
         reservation(idx) {
             let index = idx
-            console.log(index)
             axios.post("/api/reservation/set", {
 
                 room_number: this.roomInfo[index].room_number,
