@@ -125,9 +125,9 @@ export default {
                     checkIn: this.checkIn,
                     checkOut: this.checkOut,
                 })
-                .then(res => {
-                    if(res.status === 200){
-                    this.roomInfo = res.data
+                .then(response => {
+                    if(response.status === 200){
+                    this.roomInfo = response.data
                     this.$forceUpdate()
                     this.isSearch = true
                     }
@@ -161,8 +161,8 @@ export default {
                 checkin: this.checkIn,
                 checkout: this.checkOut
             })
-            .then(res =>{
-                if(res.status === 200){
+            .then(response =>{
+                if(response.status === 200){
                     alert('예약 되었습니다.')
                 }
             })
