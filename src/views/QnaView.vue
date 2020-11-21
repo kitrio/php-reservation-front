@@ -31,8 +31,11 @@
                 </table>
 
                 <div class="btn-box">
-                    <div></div>
-                    <button class="btn-writer"> 글쓰기</button>
+                  <router-link
+                    :to="{name: 'Editor'}"
+                  >
+                    <button class="btn-writer">글쓰기</button>
+                  </router-link>
                 </div>
             </div>
             

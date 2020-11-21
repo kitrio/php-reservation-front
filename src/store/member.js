@@ -1,21 +1,21 @@
 const state = {
-    memberId: null,
+    memberid: null,
   }
   
   const getters = {
     getMemberId (state) {
-      return state
+      return state.memberid
     }
   }
   
   const mutations = {
     setMemberId (state, payload) {
-      state.memberId = payload
+      state.memberid = payload
     }
   }
   
   const actions = {
-    logIn ({ commit }, payload) {
+    login ({ commit }, payload) {
       commit('setMemberId', payload)
     },
     logout ({ commit }) {

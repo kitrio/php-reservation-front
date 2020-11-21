@@ -54,11 +54,9 @@ export default {
       })
       .then(response => {
         if (response.status === 200) {
-          this.$store.dispatch('member/logIn', {
-            memberid: this.memberid
-          })
+          this.$store.dispatch('member/login', this.memberid )
+          alert('로그인되었습니다.')
           this.$router.push('/')
-          this.$store.dispatch('member/nameAction')
         }
       })
       .catch(error => {
